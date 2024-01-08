@@ -36,7 +36,7 @@ class MyGroupScreen extends StatelessWidget {
       ),
       backgroundColor: AppColors.primeColor,
       appBar: const AppBarWidget(),
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       body: RxViewer(
           rxFuture: groupController.myGroupState,
           child: () => SizedBox(
@@ -50,6 +50,7 @@ class MyGroupScreen extends StatelessWidget {
                     ),
                     itemBuilder: (BuildContext context, index) {
                       return GroupWidget(
+                        myGroup: true,
                         groupModel: groupController.myGroupState.result[index].groupModel,
                       );
                     }),

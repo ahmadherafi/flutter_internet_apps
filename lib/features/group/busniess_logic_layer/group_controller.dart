@@ -1,5 +1,6 @@
 import 'package:flutter_internet_apps/core/routing/routing_manager.dart';
 import 'package:flutter_internet_apps/features/group/data_layer/models/add_group.dart';
+import 'package:flutter_internet_apps/features/group/data_layer/models/user.dart';
 import 'package:flutter_internet_apps/features/group/data_layer/source/group_service.dart';
 import 'package:flutter_internet_apps/features/home/data_layer/model/group.dart';
 import 'package:get/state_manager.dart';
@@ -68,6 +69,27 @@ class GroupController extends GetxController {
         await groupService.addMemberToGroup(email, groupId);
       },
       onSuccess: (p0) {
+        RoutingManager.back();
+      },
+    );
+  }
+
+  RxFuture<List<User>> getUserState = RxFuture([]);
+  Future<void> getUserForGroup(int id) async {
+    await getUserState.observe((p0) async {
+      return groupService.getAllUserForGroup(id);
+    });
+  }
+
+  RxFuture<void> deleteUserFormGroupState = RxFuture(null);
+
+  Future<void> deleteUserFormGroup(int userId, int groupId) async {
+    await deleteUserFormGroupState.observe(
+      (p0) async {
+        await groupService.deleteUserFromGroup(userId, groupId);
+      },
+      onSuccess: (p0) {
+        getUserForGroup(groupId);
         RoutingManager.back();
       },
     );

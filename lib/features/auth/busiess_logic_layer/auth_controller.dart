@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter_internet_apps/core/local_storage/local_storage.dart';
+import 'package:flutter_internet_apps/core/routing/routing_manager.dart';
 import 'package:flutter_internet_apps/features/auth/data_layer/models/login_request.dart';
 import 'package:flutter_internet_apps/features/auth/data_layer/models/login_response.dart';
 import 'package:flutter_internet_apps/features/auth/data_layer/models/register.dart';
@@ -39,6 +42,20 @@ class AuthController extends GetxController {
       },
       onError: (p0) {
         onError?.call(p0);
+      },
+    );
+  }
+
+  RxFuture<void> logoutState = RxFuture(null);
+
+  Future<void> logout() async {
+    await logoutState.observe(
+      (p0) async {
+        await authService.logout();
+      },
+      onSuccess: (p0) {
+        localStorage.clear();
+        RoutingManager.offAll(RoutesName.login);
       },
     );
   }

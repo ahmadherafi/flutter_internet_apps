@@ -27,4 +27,13 @@ class AuthService {
     Map<String, dynamic> response = await request.sendRequest();
     return LoginResponseModel.fromJson(response);
   }
+
+  Future<void> logout() async {
+    Request request = Request(
+      EndPoint.logout,
+      RequestMethod.get,
+      authorized: true,
+    );
+    Map<String, dynamic> response = await request.sendRequest();
+  }
 }

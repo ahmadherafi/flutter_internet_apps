@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     homeController.getGroups();
     return Scaffold(
-        drawer: const DrawerWidget(),
+        drawer: DrawerWidget(),
         backgroundColor: AppColors.primeColor,
         appBar: const AppBarWidget(),
         body: RxViewer(

@@ -3,10 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_internet_apps/common/extensions/widget_extension.dart';
 import 'package:flutter_internet_apps/common/widgets/text.dart';
 import 'package:flutter_internet_apps/core/routing/routing_manager.dart';
+import 'package:flutter_internet_apps/features/auth/busiess_logic_layer/auth_controller.dart';
+import 'package:get/get.dart';
 import 'package:get/utils.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  AuthController authController = Get.find<AuthController>();
+  DrawerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,12 @@ class DrawerWidget extends StatelessWidget {
           ).onTap(() {
             RoutingManager.to(RoutesName.publicGroup);
           }),
+          const TextWidget(
+            "تسجيل الخروج",
+            color: Colors.black,
+          ).onTap(() {
+            authController.logout();
+          })
         ],
       ).paddingSymmetric(vertical: 30, horizontal: 10),
     );

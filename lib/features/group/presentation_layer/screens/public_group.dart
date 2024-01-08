@@ -17,7 +17,7 @@ class PublicGroupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     groupController.getPublicGroup();
     return Scaffold(
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       appBar: const AppBarWidget(),
       backgroundColor: AppColors.primeColor,
       body: RxViewer(

@@ -17,7 +17,7 @@ class PrivateGroupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     groupController.getPrivateGroup();
     return Scaffold(
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       appBar: const AppBarWidget(),
       backgroundColor: AppColors.primeColor,
       body: RxViewer(
