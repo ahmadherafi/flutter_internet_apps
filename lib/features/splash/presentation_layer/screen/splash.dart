@@ -3,9 +3,15 @@ import 'package:flutter_internet_apps/features/splash/business_logic_layer/splas
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 
-class SplashScreen extends StatelessWidget {
-  SplashController splashController = Get.find<SplashController>();
+class SplashScreen extends StatefulWidget {
   SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  SplashController splashController = Get.find<SplashController>();
 
   @override
   Widget build(BuildContext context) {

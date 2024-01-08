@@ -10,10 +10,10 @@ class AllGroupsModel {
   });
 
   factory AllGroupsModel.fromJson(Map<String, dynamic> json) => AllGroupsModel(
-        groupId: json["group_id"],
-        userId: json["user_id"],
+        groupId: json["group_id"] ?? 0,
+        userId: json["user_id"] ?? 0,
         groupModel: GroupModel.fromJson(
-          json["group"],
+          json["user_id"] == null ? json : json["group"],
         ),
       );
 

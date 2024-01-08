@@ -1,5 +1,8 @@
 import 'package:flutter_internet_apps/features/auth/presentation_layer/screens/login.dart';
 import 'package:flutter_internet_apps/features/auth/presentation_layer/screens/register.dart';
+import 'package:flutter_internet_apps/features/group/presentation_layer/screens/my_group.dart';
+import 'package:flutter_internet_apps/features/group/presentation_layer/screens/private_group.dart';
+import 'package:flutter_internet_apps/features/group/presentation_layer/screens/public_group.dart';
 import 'package:flutter_internet_apps/features/home/presentation_layer/screens/home.dart';
 import 'package:flutter_internet_apps/features/splash/presentation_layer/screen/splash.dart';
 import 'package:get/get.dart';
@@ -9,6 +12,9 @@ class RoutesName {
   static String login = '/login';
   static String register = '/register';
   static String home = '/home';
+  static String privateGroup = '/private-group';
+  static String publicGroup = '/public-group';
+  static String myGroup = '/my-group';
 }
 
 class RoutingManager {
@@ -28,6 +34,18 @@ class RoutingManager {
     GetPage(
       name: RoutesName.splash,
       page: () => SplashScreen(),
+    ),
+    GetPage(
+      name: RoutesName.privateGroup,
+      page: () => PrivateGroupScreen(),
+    ),
+    GetPage(
+      name: RoutesName.publicGroup,
+      page: () => PublicGroupScreen(),
+    ),
+    GetPage(
+      name: RoutesName.myGroup,
+      page: () => MyGroupScreen(),
     ),
   ];
 

@@ -1,6 +1,7 @@
 import 'package:flutter/animation.dart';
 
 class AppColors {
+  static Color primeColor = const Color.fromARGB(255, 31, 33, 34);
   // static Color primeColor = const Color(0xffEB671B);
   // static Color secondColor = const Color(0xff1583D8);
   // static Color boxColor = const Color(0xffF5F5F5);
