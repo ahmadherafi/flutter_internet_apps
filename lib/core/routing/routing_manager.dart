@@ -1,6 +1,7 @@
 import 'package:flutter_internet_apps/features/auth/presentation_layer/screens/login.dart';
 import 'package:flutter_internet_apps/features/auth/presentation_layer/screens/register.dart';
 import 'package:flutter_internet_apps/features/file/presentation_layer/screens/file.dart';
+import 'package:flutter_internet_apps/features/file/presentation_layer/screens/my_appointment.dart';
 import 'package:flutter_internet_apps/features/group/presentation_layer/screens/my_group.dart';
 import 'package:flutter_internet_apps/features/group/presentation_layer/screens/private_group.dart';
 import 'package:flutter_internet_apps/features/group/presentation_layer/screens/public_group.dart';
@@ -17,6 +18,7 @@ class RoutesName {
   static String publicGroup = '/public-group';
   static String myGroup = '/my-group';
   static String file = '/file';
+  static String myAppointment = '/my-appointment';
 }
 
 class RoutingManager {
@@ -52,6 +54,10 @@ class RoutingManager {
     GetPage(
       name: RoutesName.file,
       page: () => FileScreen(),
+    ),
+    GetPage(
+      name: RoutesName.myAppointment,
+      page: () => MyAppointmentScreen(),
     ),
   ];
 

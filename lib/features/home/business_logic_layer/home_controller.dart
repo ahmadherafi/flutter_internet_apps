@@ -8,8 +8,13 @@ class HomeController extends GetxController {
   HomeService homeService = HomeService();
 
   Future<void> getGroups() async {
-    await groupsState.observe((p0) async {
-      return await homeService.getGroups();
-    });
+    Future.delayed(
+      Duration.zero,
+      () async {
+        await groupsState.observe((p0) async {
+          return await homeService.getGroups();
+        });
+      },
+    );
   }
 }

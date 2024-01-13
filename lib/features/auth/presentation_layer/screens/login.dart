@@ -28,6 +28,7 @@ class LoginScreen extends StatelessWidget {
             },
           ).paddingSymmetric(vertical: 20),
           TextFieldWidget(
+            obscure: true,
             onChange: (value) {
               authController.loginRequestModel.password = value;
             },

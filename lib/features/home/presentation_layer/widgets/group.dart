@@ -93,9 +93,8 @@ class GroupWidget extends StatelessWidget {
         ],
       ),
     ).onTap(() {
-      RoutingManager.to(RoutesName.file);
+      RoutingManager.to(RoutesName.file, arguments: groupModel.id);
       fileController.getFile(groupModel.id);
-      
     });
   }
 

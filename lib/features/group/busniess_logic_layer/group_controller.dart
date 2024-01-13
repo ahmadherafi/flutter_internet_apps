@@ -11,25 +11,40 @@ class GroupController extends GetxController {
   RxFuture<List<AllGroupsModel>> privateGroupState = RxFuture([]);
 
   Future<void> getPrivateGroup() async {
-    await privateGroupState.observe((p0) async {
-      return groupService.getPrivateGroup();
-    });
+    Future.delayed(
+      Duration.zero,
+      () async {
+        await privateGroupState.observe((p0) async {
+          return groupService.getPrivateGroup();
+        });
+      },
+    );
   }
 
   RxFuture<List<AllGroupsModel>> publicGroupState = RxFuture([]);
 
   Future<void> getPublicGroup() async {
-    await publicGroupState.observe((p0) async {
-      return groupService.getPublicGroup();
-    });
+    Future.delayed(
+      Duration.zero,
+      () async {
+        await publicGroupState.observe((p0) async {
+          return groupService.getPublicGroup();
+        });
+      },
+    );
   }
 
   RxFuture<List<AllGroupsModel>> myGroupState = RxFuture([]);
 
   Future<void> myGroup() async {
-    await myGroupState.observe((p0) async {
-      return groupService.myGroup();
-    });
+    Future.delayed(
+      Duration.zero,
+      () async {
+        await myGroupState.observe((p0) async {
+          return groupService.myGroup();
+        });
+      },
+    );
   }
 
   Rx<AddGroupModel> addGroupModel = AddGroupModel.zero().obs;

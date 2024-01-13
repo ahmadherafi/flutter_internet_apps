@@ -11,4 +11,12 @@ class EndPoint {
   static String getUserForGroup(int groupId) => 'getUserForGroup/$groupId';
   static String deleteUserFormGroup = 'group/leave/user';
   static String getFile(int groupId) => 'file/get_files/$groupId';
+  static String addFile = 'file/adding';
+  static String deleteFile(int fileId) => 'file/$fileId';
+  static String downloadFile(int fileId) => 'file/download/$fileId';
+  static String updateFile(int fileId) => 'file/upload/$fileId';
+  static String appointmentFiles = 'appointment/create';
+  static String myAppointment = 'appointment/to-user';
+  static String deleteAppointment(int appointmentId) => 'appointment/cancel/$appointmentId';
+  static String getReport = 'appointment/index';
 }

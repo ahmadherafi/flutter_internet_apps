@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/utils.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({super.key});
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,6 +21,19 @@ class _SplashScreenState extends State<SplashScreen> {
         splashController.checkToken();
       },
     );
-    return const Placeholder();
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: Get.width,
+            height: 200,
+            alignment: Alignment.center,
+            child: Image.asset("assets/images/download.jpeg"),
+          )
+        ],
+      ),
+    );
   }
 }

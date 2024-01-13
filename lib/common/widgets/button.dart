@@ -10,9 +10,17 @@ class ButtonWidget extends StatelessWidget {
   final String title;
   final void Function()? onTap;
   final bool? isLoading;
+  final Color? color;
 
-  const ButtonWidget(
-      {super.key, this.height, this.width, required this.title, required this.onTap, this.isLoading = false});
+  const ButtonWidget({
+    super.key,
+    this.height,
+    this.width,
+    required this.title,
+    required this.onTap,
+    this.isLoading = false,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +32,7 @@ class ButtonWidget extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Colors.black,
+          color: color ?? Colors.black,
         ),
         child: isLoading!
             ? Row(

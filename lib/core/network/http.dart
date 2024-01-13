@@ -20,6 +20,9 @@ class Request {
   Map<String, dynamic>? headers;
   final Map<String, dynamic>? body;
   final Map<String, dynamic>? queryParams;
+  String? savePath;
+  void Function(int, int)? onReceiveProgress;
+  // int? receiveTimeout;
 
   Request(
     this.endPoint,
@@ -30,6 +33,9 @@ class Request {
     this.headers,
     this.body,
     this.queryParams,
+    this.savePath,
+    this.onReceiveProgress,
+    // this.receiveTimeout,
   }) {
     if (authorized) {
       // AuthController authController = stateGet.Get.find<AuthController>();
@@ -99,5 +105,59 @@ class Request {
       }
     }
     return {};
+  }
+
+  Future<void> downloadRequest() async {
+    Response? response;
+    try {
+      response = await DioInstance().dio.download(
+            endPoint,
+            savePath,
+            data: body,
+            queryParameters: queryParams,
+            onReceiveProgress: onReceiveProgress,
+            options: Options(
+              method: method.name.toUpperCase(),
+              headers: headers,
+              contentType: 'application/json',
+              // receiveTimeout: receiveTimeout,
+            ),
+          );
+      if (response.statusCode! >= 200 && response.statusCode! < 300) {
+        //TODO: this should be handled in diffren way.
+        // if (response.data is String) return json.decode(response.data);
+        
+        // return response.data;
+      }
+    } on DioException catch (error) {
+      if (error.type == DioExceptionType.badResponse) {
+        // handling bad requests.
+        if (error.response!.statusCode == 400) {
+          // this line is really depends on what server responds, and how it reply with errors.
+          throw badRequestException[error.response!.data["error"]] ??
+               GenericException(
+                type: ExceptionType.Other,
+              );
+        }
+
+        // handling other status codes.
+        throw statusCodesException[error.response!.statusCode] ??
+             GenericException(
+              type: ExceptionType.Other,
+            );
+      }
+      // handling connection problems.
+      if (error.type == DioExceptionType.connectionTimeout ||
+          error.type == DioExceptionType.sendTimeout ||
+          error.type == DioExceptionType.receiveTimeout ||
+          error.type == DioExceptionType.unknown) {
+       
+        throw GenericException(
+          type: ExceptionType.ConnectionError,
+          errorMessage: 'no_internet_connection',
+        );
+      }
+    }
+    // return {};
   }
 }
